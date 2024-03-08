@@ -1,2 +1,1 @@
-# suntk
-태양
+# jeon
