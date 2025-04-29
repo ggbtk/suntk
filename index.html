@@ -1,86 +1,638 @@
+<!DOCTYPE html>
+<html lang="ko">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태양티켓 - 상품권 매입 전문 업체</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
-
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>태양티켓</title>
-<meta property="og:url" content="https://xn--og5by7oenb36c.kr/">
-<meta property="og:title" content="태양티켓">
-<meta property="og:description" content="태양티켓">
-<meta name="description" content="태양티켓">
-<meta name="viewport" content="width=device-width">
-<link rel="canonical" href="https://xn--og5by7oenb36c.kr/">
-<link rel="shortcut icon" href="favicon/favicon.ico">
-<link href="css/style.css" type="text/css" rel="stylesheet">
-<script src="javascript/script.js" defer type="text/javascript"></script>
-<script src="javascript/jquery-3.6.0.js" type="text/javascript"></script>
-<script src="javascript/jquery.rwdImageMaps.js" type="text/javascript"></script>
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-	<style>
-		.popup .body{ position: fixed; top: 10%; left: 50%; width:auto; z-index: 20; transform: translate(-50%, 0); text-align: center; }
-		.popup a{ position: absolute; top: 10px; right: 20px; color:#fff; }
-		.popup .bg{ position: fixed; top: 0 ; left:0; right:0; z-index: 10; width: 1000px; max-width: 100%; height: 100%; margin:0 auto; background: rgba(0,0,0,0.5); }
-		@media (max-width:991px) {
-			.popup .body{ width:100%; padding: 0 10px; }
-		}
-	</style>
-	<style type="text/css">
- img[usemap] {
-  border: none;
-  height: auto;
-  max-width: 100%;
-  width: auto;
- }
-</style>
-		<style>
-		footer { padding: 33px 0; text-align: center; font-size: 15px; line-height: 1.8em; color:#ffffff; background:#525252; }
-	</style>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MXPP9C5');</script>
-<!-- End Google Tag Manager -->
-
-
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#0066CC',secondary:'#FAE100'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .hero-bg {
+            background-image: url('https://readdy.ai/api/search-image?query=A%20professional%20and%20clean%20background%20image%20with%20soft%20blue%20gradient.%20The%20left%20side%20has%20a%20clean%20white%20space%20for%20text%2C%20while%20the%20right%20side%20shows%20gift%20cards%2C%20mobile%20vouchers%2C%20and%20gift%20certificates%20in%20a%20neat%20arrangement.%20The%20transition%20between%20white%20and%20image%20is%20smooth%20and%20natural.%20The%20overall%20feel%20is%20trustworthy%20and%20professional.&width=1280&height=720&seq=1&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+        }
+        .kakao-button {
+            background-color: #FAE100;
+            color: #3A1D1D;
+        }
+        .phone-button {
+            background-color: #0066CC;
+            color: white;
+        }
+        input:focus {
+            outline: none;
+        }
+    </style>
 </head>
+<body class="bg-gray-50 min-h-screen">
 
-<body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MXPP9C5"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<div class="contents">
-	<div class="wrap">
+    <!-- 헤더 -->
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-2xl font-['Pacifico'] text-primary">logo</div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#process" class="font-medium text-gray-700 hover:text-primary">이용방법</a>
+                <a href="#trust" class="font-medium text-gray-700 hover:text-primary">회사소개</a>
+                <a href="#contact" class="font-medium text-gray-700 hover:text-primary">상담문의</a>
+            </nav>
+            <div class="md:hidden w-8 h-8 flex items-center justify-center">
+                <i class="ri-menu-line text-gray-700 ri-lg"></i>
+            </div>
+        </div>
+    </header>
 
-		<div class="con1">
-			<img src="img/content1.jpg" usemap="#map01">
-		</div>
-	</div>
-</div>
+    <!-- 히어로 섹션 -->
+    <section class="hero-bg pt-24 md:pt-32 pb-16 md:pb-24">
+        <div class="container mx-auto px-4 w-full">
+          <div class="max-w-2xl bg-white bg-opacity-90 p-6 md:p-10 rounded-lg shadow-lg">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              상품권 매입, 믿고 맡길 곳은 태양티켓!
+            </h1>
+            <p class="text-lg text-gray-700 mb-8">
+              정식등록업체 태양티켓은 모바일상품권, 문화상품권, 기프티콘을 가장 빠르게 매입합니다.
+            </p>
+      
+            <div class="flex flex-col sm:flex-row gap-4">
+              <!-- 카카오톡 버튼 -->
+              <a
+                href="http://qr.kakao.com/talk/2ytK.gxmcL0gXXmKqhsJ4jtM0SE-"
+                target="_blank"
+                class="w-full sm:w-1/2 bg-yellow-400 text-black py-4 px-6 rounded-lg font-bold hover:bg-yellow-500 transition flex flex-col items-center justify-center gap-1 text-center shadow-md hover:shadow-lg"
+              >
+                <i class="ri-kakao-talk-fill ri-xl"></i>
+                <span class="text-base">카카오톡으로 바로 상담하기</span>
+                <span class="text-xs text-gray-800">카카오톡 ID친구추가 : 19NU</span>
+              </a>
+      
+              <!-- 전화 연결 버튼 -->
+              <a
+                href="tel:01094690590"
+                class="w-full sm:w-1/2 bg-blue-600 text-white py-4 px-6 rounded-lg font-bold hover:bg-blue-700 transition flex flex-col items-center justify-center gap-1 text-center shadow-md hover:shadow-lg"
+              >
+                <i class="ri-phone-fill ri-xl"></i>
+                <span class="text-base">전화 연결하기</span>
+                <span class="text-xs text-gray-100">010-8070-1176</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      
 
- <script>
-$(function(){
-	$('img[usemap]').rwdImageMaps();
-	$("#img").width("100%");
-});
-</script>
-	
-				<map name = "map01" id="map01">
-    <area target="" alt="" title="" href="http://qr.kakao.com/talk/8icR2d8vBLPlQdCHbrqBOlquCuM-" coords="35,781,25,787,18,793,18,881,24,890,30,896,347,894,355,889,358,881,358,796,356,788,345,779" shape="poly">
-    <area target="" alt="" title="" href="http://qr.kakao.com/talk/8icR2d8vBLPlQdCHbrqBOlquCuM-" coords="232,1818,221,1821,212,1830,207,1839,204,1847,206,1859,209,1869,216,1876,221,1882,229,1885,631,1885,642,1882,650,1872,654,1858,655,1850,655,1839,648,1828,637,1822,628,1818" shape="poly">
-    <area target="" alt="" title="" href="http://qr.kakao.com/talk/8icR2d8vBLPlQdCHbrqBOlquCuM-" coords="233,3097,629,3096,638,3099,647,3105,652,3113,655,3123,656,3132,656,3142,651,3150,643,3157,636,3162,630,3165,233,3165,222,3160,215,3156,208,3146,206,3134,206,3124,209,3112,219,3100" shape="poly">
-    <area target="" alt="" title="" href="http://qr.kakao.com/talk/8icR2d8vBLPlQdCHbrqBOlquCuM-" coords="49,4456,391,4458,408,4462,418,4473,422,4482,424,4500,426,4518,418,4531,410,4541,395,4548,388,4549,48,4549,37,4549,31,4544,21,4536,16,4526,11,4513,11,4495,14,4483,20,4469,32,4462" shape="poly">
-    <area target="" alt="" title="" href="tel:010-9469-0590" coords="522,780,513,781,504,788,502,882,508,889,518,895,826,895,837,891,841,880,844,796,839,787,832,784,824,780" shape="poly">
-    <area target="" alt="" title="" href="tel:010-9469-0590" coords="467,4457,814,4457,826,4460,837,4468,845,4479,845,4491,847,4523,837,4537,827,4544,817,4550,465,4549,449,4540,438,4527,437,4512,436,4496,437,4483,442,4474,450,4462" shape="poly">
-</map>
+    <!-- 신뢰 섹션 -->
+    <section id="trust" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">태양티켓을 선택해야 하는 이유</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all text-center">
+                    <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-verified-badge-fill ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">정식 등록업체</h3>
+                    <p class="text-gray-600">정부에 등록된 공식 업체로 안전하고 신뢰할 수 있는 거래를 보장합니다.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all text-center">
+                    <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-line-chart-fill ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">높은 매입률</h3>
+                    <p class="text-gray-600">시중 최고 수준의 매입률을 제공하여 고객님의 상품권 가치를 극대화합니다.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all text-center">
+                    <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-time-fill ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">빠른 처리</h3>
+                    <p class="text-gray-600">상담부터 입금까지 최대 5분 이내 신속하게 처리해 드립니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-		<footer>
-		상호 : 태양티켓
-		대표전화 : 010-9469-0590
-		<br>
-		카카오톡 : NUTK 대표자 : 진홍준<br>
-		Copyright 태양티켓. All rights reserved.
-		</footer>
+    <!-- 프로세스 섹션 -->
+    <section id="process" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">이용 방법</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-md relative">
+                    <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center absolute -top-3 -left-3">1</div>
+                    <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-message-3-fill ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">카카오톡 또는 전화로 문의</h3>
+                    <p class="text-gray-600 text-center">카카오톡이나 전화로 간편하게 문의해 주세요.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md relative">
+                    <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center absolute -top-3 -left-3">2</div>
+                    <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-gift-fill ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">상품권 종류 및 금액 전달</h3>
+                    <p class="text-gray-600 text-center">상품권 정보와 금액을 알려주시면 실시간 시세를 안내해 드립니다.</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md relative">
+                    <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center absolute -top-3 -left-3">3</div>
+                    <div class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="ri-bank-card-fill ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-center">실시간 시세로 매입 후 바로 입금</h3>
+                    <p class="text-gray-600 text-center">합의된 금액으로 즉시 매입 후 계좌로 바로 입금해 드립니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 취급 상품권 섹션 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">취급 상품권</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-all text-center">
+                    <div class="w-14 h-14 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                        <i class="ri-smartphone-fill ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="font-bold">모바일 상품권</h3>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-all text-center">
+                    <div class="w-14 h-14 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                        <i class="ri-ticket-2-fill ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="font-bold">문화 상품권</h3>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-all text-center">
+                    <div class="w-14 h-14 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                        <i class="ri-shopping-bag-fill ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="font-bold">기프티콘</h3>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm hover:shadow-md transition-all text-center">
+                    <div class="w-14 h-14 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                        <i class="ri-coupon-fill ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="font-bold">상품권 전체</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <!-- 고객 후기 섹션 -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <h2 class="text-2xl md:text-3xl font-bold text-center mb-12">고객 후기</h2>
+      
+          <!-- Swiper -->
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <!-- 후기 1 -->
+                <div class="swiper-slide bg-white p-6 rounded-lg shadow-md">
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="ri-user-fill text-primary"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold">김민준 님</h4>
+                      <div class="flex text-yellow-400">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">"처음 이용해봤는데 정말 빠르고 친절했어요. 5분도 안 되어 입금까지 완료되었습니다."</p>
+                </div>
+              
+                <!-- 후기 2 -->
+                <div class="swiper-slide bg-white p-6 rounded-lg shadow-md">
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="ri-user-fill text-primary"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold">박서연 님</h4>
+                      <div class="flex text-yellow-400">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">"다른 곳보다 매입률이 높았어요. 상담도 친절하고 거래가 안전해서 만족했습니다."</p>
+                </div>
+              
+                <!-- 후기 3 -->
+                <div class="swiper-slide bg-white p-6 rounded-lg shadow-md">
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="ri-user-fill text-primary"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold">이준호 님</h4>
+                      <div class="flex text-yellow-400">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-half-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">"여러 상품권을 한 번에 처리해주셔서 편했어요. 카톡 문의도 바로 되고 만족해요."</p>
+                </div>
+              
+                <!-- 후기 4 -->
+                <div class="swiper-slide bg-white p-6 rounded-lg shadow-md">
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="ri-user-fill text-primary"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold">최유리 님</h4>
+                      <div class="flex text-yellow-400">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">"밤늦게 문의드렸는데도 빠르게 대응해주셔서 감사했어요. 다음에도 또 이용할게요."</p>
+                </div>
+              
+                <!-- 후기 5 -->
+                <div class="swiper-slide bg-white p-6 rounded-lg shadow-md">
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="ri-user-fill text-primary"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold">정우성 님</h4>
+                      <div class="flex text-yellow-400">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-line"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">"처음이라 걱정했는데 너무 친절하게 설명해주셔서 신뢰가 갔어요."</p>
+                </div>
+              
+                <!-- 후기 6 -->
+                <div class="swiper-slide bg-white p-6 rounded-lg shadow-md">
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="ri-user-fill text-primary"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold">한지민 님</h4>
+                      <div class="flex text-yellow-400">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-half-fill"></i><i class="ri-star-line"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">"웹사이트도 깔끔하고 절차가 쉬워서 금방 끝났어요. 초보도 쉽게 이용 가능하네요."</p>
+                </div>
+              
+                <!-- 후기 7 -->
+                <div class="swiper-slide bg-white p-6 rounded-lg shadow-md">
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="ri-user-fill text-primary"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold">조현우 님</h4>
+                      <div class="flex text-yellow-400">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">"고객센터 응대가 아주 만족스러웠어요. 믿고 맡길 수 있을 정도입니다."</p>
+                </div>
+              
+                <!-- 후기 8 -->
+                <div class="swiper-slide bg-white p-6 rounded-lg shadow-md">
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="ri-user-fill text-primary"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold">서지훈 님</h4>
+                      <div class="flex text-yellow-400">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">"입금도 빠르고 안내도 깔끔했어요. 계속 이용하고 싶을 정도로 만족합니다."</p>
+                </div>
+              
+                <!-- 후기 9 -->
+                <div class="swiper-slide bg-white p-6 rounded-lg shadow-md">
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="ri-user-fill text-primary"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold">홍지민 님</h4>
+                      <div class="flex text-yellow-400">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-line"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">"처리 속도가 빠르고 응대도 너무 친절해서 앞으로 자주 이용할 것 같아요."</p>
+                </div>
+              
+                <!-- 후기 10 -->
+                <div class="swiper-slide bg-white p-6 rounded-lg shadow-md">
+                  <div class="flex items-center mb-4">
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                      <i class="ri-user-fill text-primary"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold">윤하늘 님</h4>
+                      <div class="flex text-yellow-400">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-half-fill"></i><i class="ri-star-line"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">"처음엔 반신반의했는데 이용해보니 정말 편하고 믿을 수 있었어요."</p>
+                </div>
+              </div>
+              
+          </div>
+        </div>
+      </section>
+      
+
+
+
+    <!-- 연락처 섹션 -->
+
+<!-- 실시간 거래 현황 섹션 -->
+<section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <!-- 타이틀 -->
+      <div class="text-center mb-8">
+        <h2 class="text-2xl md:text-3xl font-bold text-pink-600 animate-pulse">
+          💸 실시간 거래 현황 💸
+        </h2>
+        <p class="text-gray-600 mt-2 text-sm">방금 이 순간에도 많은 고객들이 태양티켓을 이용하고 있어요!</p>
+      </div>
+  
+      <!-- 테이블 -->
+      <div class="overflow-x-auto shadow-lg rounded-lg border border-pink-100">
+        <table class="min-w-full text-sm text-left">
+          <thead class="bg-gradient-to-r from-pink-500 to-rose-400 text-white text-sm tracking-wider uppercase">
+            <tr>
+              <th class="py-3 px-4">접수정보</th>
+              <th class="py-3 px-4">접수일</th>
+              <th class="py-3 px-4">진행상태</th>
+            </tr>
+          </thead>
+          <tbody id="random-table-body" class="bg-white text-black">
+            <!-- JS로 자동 삽입 -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+
+<!-- 연락처 섹션 -->
+<section id="contact" class="py-16 bg-primary text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-6">
+        망설이지 마세요! 지금 바로 상담 시작
+      </h2>
+      <p class="text-lg mb-8 max-w-2xl mx-auto">
+        태양티켓은 언제나 고객님의 상품권을 최고의 가격으로 매입해 드립니다. 지금 바로 문의하세요.
+      </p>
+  
+      <!-- 버튼 영역 -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <!-- 카카오톡 버튼 -->
+        <a
+          href="http://qr.kakao.com/talk/2ytK.gxmcL0gXXmKqhsJ4jtM0SE-"
+          target="_blank"
+          class="w-full sm:w-auto bg-yellow-400 text-black py-4 px-8 rounded-lg font-bold hover:bg-yellow-500 transition flex flex-col items-center justify-center gap-1 shadow-md hover:shadow-lg text-center"
+        >
+          <i class="ri-kakao-talk-fill ri-xl"></i>
+          <span class="text-lg">카카오톡 연결</span>
+          <span class="text-xs text-gray-800">카카오톡 ID친구추가 : 19NU</span>
+        </a>
+  
+        <!-- 전화 버튼 -->
+        <a
+          href="tel:01094690590"
+          class="w-full sm:w-auto bg-white text-primary py-4 px-8 rounded-lg font-bold hover:bg-gray-100 transition flex flex-col items-center justify-center gap-1 shadow-md hover:shadow-lg text-center"
+        >
+          <i class="ri-phone-fill ri-xl"></i>
+          <span class="text-lg">전화 상담</span>
+          <span class="text-xs text-gray-700">010-8070-1176</span>
+        </a>
+      </div>
+  
+      <!-- 안내 문구 -->
+      <div class="text-white text-opacity-80 text-sm">
+        <p>운영시간: 365일 24시간</p>
+        <p>전문상담사 24시간 상시 대기!</p>
+      </div>
+    </div>
+  </section>
+  
+
+<!-- 하단 고정 버튼 -->
+<!-- 하단 고정 버튼 -->
+<div class="fixed bottom-0 left-0 w-full flex z-50 text-sm sm:text-base">
+    <!-- 카카오톡 버튼 -->
+    <button
+      onclick="window.open('http://qr.kakao.com/talk/8icR2d8vBLPlQdCbhrqBOlaquCuM', '_blank')"
+      class="w-1/2 bg-yellow-400 text-black py-4 sm:py-5 font-bold hover:bg-yellow-500 transition flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center"
+    >
+      <i class="ri-kakao-talk-fill ri-lg sm:ri-xl"></i>
+      <span>카카오톡 상담 : <span class="font-semibold">19NU</span></span>
+    </button>
+  
+    <!-- 전화 연결 버튼 -->
+    <button
+      onclick="location.href='tel:01094690590'"
+      class="w-1/2 bg-blue-600 text-white py-4 sm:py-5 font-bold hover:bg-blue-700 transition flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center"
+    >
+      <i class="ri-phone-fill ri-lg sm:ri-xl"></i>
+      <span>전화 연결 : <span class="font-semibold">010-8070-1176</span></span>
+    </button>
+  </div>
+  
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <div class="text-2xl font-['Pacifico'] mb-4">logo</div>
+                    <p class="text-gray-400 max-w-md">태양티켓은 정식 등록된 상품권 매입 전문 업체로, 안전하고 빠른 거래를 약속드립니다.</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-lg font-bold mb-4">서비스</h3>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white">상품권 매입</a></li>
+                            <li><a href="#" class="hover:text-white">기프티콘 매입</a></li>
+                            <li><a href="#" class="hover:text-white">모바일 상품권</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-bold mb-4">회사 정보</h3>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="#" class="hover:text-white">회사 소개</a></li>
+                            <li><a href="#" class="hover:text-white">이용약관</a></li>
+                            <li><a href="#" class="hover:text-white">개인정보처리방침</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-bold mb-4">연락처</h3>
+                        <ul class="space-y-2 text-gray-400">
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2">
+                                    <i class="ri-phone-fill"></i>
+                                </div>
+                                010-8070-1176
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2">
+                                    <i class="ri-kakao-talk-fill"></i>
+                                </div>
+                                카카오톡ID : 19NU
+                            </li>
+                            <li class="flex items-center">
+                                <div class="w-5 h-5 flex items-center justify-center mr-2">
+                                    <i class="ri-error-warning-fill"></i>
+                                </div>
+                                태양티켓은 카카오톡 채널 또는 오픈채팅을 운영하지않습니다.<br> 사칭 및 사기에 유의 부탁드립니다.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-500">
+                <p>상호 : 태양티켓 대표전화 : 010-8070-1176</p>
+                <p>카카오톡 : 19NU 대표자 : 진홍준</p>
+                <p>Copyright 태양티켓. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.querySelector('.ri-menu-line');
+            const nav = document.querySelector('nav');
+            
+            menuButton.addEventListener('click', function() {
+                nav.classList.toggle('hidden');
+                nav.classList.toggle('flex');
+                nav.classList.toggle('flex-col');
+                nav.classList.toggle('absolute');
+                nav.classList.toggle('top-16');
+                nav.classList.toggle('right-4');
+                nav.classList.toggle('bg-white');
+                nav.classList.toggle('p-4');
+                nav.classList.toggle('rounded-lg');
+                nav.classList.toggle('shadow-lg');
+            });
+        });
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        const swiper = new Swiper(".mySwiper", {
+          slidesPerView: 1,             // 한 화면에 몇 개 보여줄지
+          spaceBetween: 20,
+          loop: true,                   // 반복 슬라이드
+          autoplay: {
+            delay: 3000,                // 3초마다 슬라이드
+            disableOnInteraction: false
+          },
+          breakpoints: {
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            }
+          }
+        });
+      </script>
+
+
+<!-- 스크립트 -->
+<script>
+    const names = ['김**', '이**', '박**', '최**', '정**', '유**', '장**', '조**', '임**', '한**'];
+    const statuses = [
+      { icon: '✅', label: '입금완료', color: 'text-green-600' },
+      { icon: '🔄', label: '진행중', color: 'text-yellow-600' },
+      { icon: '🕒', label: '대기중', color: 'text-red-600' },
+    ];
+  
+    function getToday() {
+      const d = new Date();
+      return `${d.getMonth() + 1}월-${d.getDate()}일`;
+    }
+  
+    function getRandomAmount() {
+      const amount = (Math.floor(Math.random() * 20) + 1) * 10000; // 1만원 ~ 20만원
+      return amount.toLocaleString() + '원';
+    }
+  
+    function addRandomRow() {
+      const name = names[Math.floor(Math.random() * names.length)];
+      const amount = getRandomAmount();
+      const status = statuses[Math.floor(Math.random() * statuses.length)];
+  
+      const row = document.createElement("tr");
+      row.classList.add("animate-fade-in");
+      row.innerHTML = `
+        <td class="py-3 px-4">${name} ${amount} 상담접수완료</td>
+        <td class="py-3 px-4 whitespace-nowrap">${getToday()}</td>
+        <td class="py-3 px-4 font-semibold ${status.color}">${status.icon} ${status.label}</td>
+      `;
+  
+      const tbody = document.getElementById("random-table-body");
+      tbody.insertBefore(row, tbody.firstChild);
+  
+      if (tbody.children.length > 10) {
+        tbody.removeChild(tbody.lastElementChild);
+      }
+    }
+  
+    // 커스텀 fade-in 애니메이션
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes fade-in {
+        0% {opacity: 0; transform: translateY(-5px);}
+        100% {opacity: 1; transform: translateY(0);}
+      }
+      .animate-fade-in {
+        animation: fade-in 0.4s ease-in-out;
+      }
+    `;
+    document.head.appendChild(style);
+  
+    for (let i = 0; i < 5; i++) addRandomRow();
+    setInterval(addRandomRow, 1000);
+  </script>
 </body>
 </html>
